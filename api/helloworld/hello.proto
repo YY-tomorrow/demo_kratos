@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package api.helloworld;
+
+import "google/api/annotations.proto";
+
+option go_package = "demo_kratos/api/helloworld;helloworld";
+option java_multiple_files = true;
+option java_package = "api.helloworld";
+
+service Hello {
+  rpc CreateHello (CreateHelloRequest) returns (CreateHelloReply);
+  rpc UpdateHello (UpdateHelloRequest) returns (UpdateHelloReply);
+  rpc DeleteHello (DeleteHelloRequest) returns (DeleteHelloReply);
+  rpc GetHello (GetHelloRequest) returns (GetHelloReply);
+  rpc ListHello (ListHelloRequest) returns (ListHelloReply);
+
+  rpc HelloDemo (HelloDemoRequest) returns (HelloDemoReply)  {
+    option (google.api.http) = {
+      get: "/hello_demo/{name}"
+    };
+  }
+}
+
+message CreateHelloRequest {}
+message CreateHelloReply {}
+
+message UpdateHelloRequest {}
+message UpdateHelloReply {}
+
+message DeleteHelloRequest {}
+message DeleteHelloReply {}
+
+message GetHelloRequest {}
+message GetHelloReply {}
+
+message ListHelloRequest {}
+message ListHelloReply {}
+
+message HelloDemoRequest {
+  string name = 1;
+}
+message HelloDemoReply{
+  string message = 1;
+}
